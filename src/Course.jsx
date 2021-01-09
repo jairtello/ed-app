@@ -1,6 +1,3 @@
-import React from "react";
-import Curso from "./Curso";
-
 const cursos = [
   {
     id: 1,
@@ -51,22 +48,28 @@ const cursos = [
     profesor: "Emanuel Faert",
   },
 ];
+const Course = ({ match }) => {
+  const cursoActual = cursos.filter(
+    (c) => c.id === parseInt(match.params.id)
+  )[0];
 
-const CourseGrid = () => {
   return (
-    <div className="ed-grid m-grid-4">
-      {cursos.map((curso, index) => (
-        <Curso
-          key={index}
-          id={curso.id}
-          image={curso.image}
-          title={curso.title}
-          profesor={curso.profesor}
-          price={curso.price}
-        />
-      ))}
+    <div className="ed-grid m-grid-3">
+      {cursoActual ? (
+        <>
+          <h1 className="m-cols-3">{cursoActual.title}</h1>
+          <img
+            className="m-cols-1"
+            src={cursoActual.image}
+            alt="Imagén del curso"
+          />
+          <p className="m-cols-2">Profesor: {cursoActual.profesor}</p>
+        </>
+      ) : (
+        <h1>El curso no existe</h1>
+      )}
     </div>
   );
 };
 
-export default CourseGrid;
+export default Course;

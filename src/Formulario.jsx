@@ -6,7 +6,7 @@ class Formulario extends Component {
     this.state = {
       nombre: "",
       correo: "",
-      fecha: (new Date()).toLocaleTimeString(),
+      fecha: new Date().toLocaleTimeString(),
     };
 
     this.cambiarNombre = this.cambiarNombre.bind(this);
@@ -28,7 +28,7 @@ class Formulario extends Component {
 
   cambiarFecha() {
     this.setState({
-      fecha: (new Date()).toLocaleTimeString(),
+      fecha: new Date().toLocaleTimeString(),
     });
   }
 
@@ -60,14 +60,14 @@ class Formulario extends Component {
   componentDidMount() {
     const elemento = document.getElementById("elemento");
     console.log(elemento);
-    this.intervaloFecha = setInterval(() => { 
+    this.intervaloFecha = setInterval(() => {
       this.cambiarFecha();
     }, 1000);
   }
 
-  componentDidUpdate(prevProps, prepState) {
+  componentDidUpdate(prevProps, prevState) {
     // console.log(prevProps);
-    console.log(prepState);
+    console.log(prevState);
   }
 
   componentWillUnmount() {
